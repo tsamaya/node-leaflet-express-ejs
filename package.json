@@ -1,0 +1,37 @@
+{
+  "name": "node-leaflet-express-ejs",
+  "version": "1.0.0",
+  "description": "leaflet map served by an express server using ejs templating engine",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsamaya/node-leaflet-express-ejs.git"
+  },
+  "keywords": [
+    "node",
+    "leaflet",
+    "express",
+    "template",
+    "ejs"
+  ],
+  "author": "Arnaud Ferrand",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tsamaya/node-leaflet-express-ejs/issues"
+  },
+  "homepage": "https://github.com/tsamaya/node-leaflet-express-ejs#readme",
+  "dependencies": {
+    "ejs": "^2.5.5",
+    "express": "^4.14.1",
+    "express-ejs-layouts": "^2.2.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-live-server": "0.0.30",
+    "gulp-open": "^2.0.0"
+  }
+}
