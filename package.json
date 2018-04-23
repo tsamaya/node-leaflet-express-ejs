@@ -25,9 +25,19 @@
   },
   "homepage": "https://github.com/tsamaya/node-leaflet-express-ejs#readme",
   "dependencies": {
+    "browserify-middleware": "^8.1.0",
     "ejs": "^2.5.5",
     "express": "^4.14.1",
-    "express-ejs-layouts": "^2.2.0"
+    "express-browserify": "^1.0.2",
+    "express-ejs-layouts": "^2.2.0",
+    "express-http-proxy": "^1.2.0",
+    "jquery": "^3.3.1",
+    "leaflet": "^1.3.1",
+    "leaflet-geometryutil": "^0.8.1",
+    "leaflet-geosearch": "^2.6.0",
+    "morgan": "^1.9.0",
+    "mt-latlon": "^0.1.1",
+    "suncalc": "^1.8.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
