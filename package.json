@@ -26,6 +26,7 @@
   "homepage": "https://github.com/tsamaya/node-leaflet-express-ejs#readme",
   "dependencies": {
     "browserify-middleware": "^8.1.0",
+    "d3": "^5.4.0",
     "ejs": "^2.5.5",
     "express": "^4.14.1",
     "express-browserify": "^1.0.2",
@@ -36,8 +37,10 @@
     "leaflet-geometryutil": "^0.8.1",
     "leaflet-geosearch": "^2.6.0",
     "leaflet-hotline": "^0.4.0",
+    "leaflet-openweathermap": "git+https://github.com/buche/leaflet-openweathermap.git",
     "leaflet-sidebar-v2": "^3.0.2",
     "leaflet-tilelayer-colorpicker": "^0.1.0",
+    "leaflet.elevation": "0.0.3",
     "morgan": "^1.9.0",
     "mt-latlon": "^0.1.1",
     "suncalc": "^1.8.0"

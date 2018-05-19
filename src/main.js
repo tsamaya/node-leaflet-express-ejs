@@ -6,10 +6,28 @@ var proxy = require('express-http-proxy');
 var morgan = require('morgan')
 var GeometryUtil = require("leaflet-geometryutil");
 
+require("leaflet-openweathermap");
+//var d3 = require("d3");
+
 //require("leaflet-tilelayer");
 require("leaflet-tilelayer-colorpicker");
 require('leaflet-hotline')(L);
+//require('leaflet.elevation');
+//require('leaflet-sidebar-v2');
 
+//https://jjwtay.github.io/Leaflet.draw-box/ target box  drawing
+// locate me https://www.npmjs.com/package/leaflet.locatecontrol
+// geo search
+
+//elevation inspiration  https://www.solwise.co.uk/wireless-elevationtool.html
+// sun calc http://suncalc.net/
+
+//TODO : find area
+//TODO : draw box or segment / select point
+//TODO: get elevations
+// TODO : find sectors you can see from
+// TODO : thind road / parks you should be able to see from
+// TODO : get google street maps images in that direction
 
 function getDirectionalLine(target, angle, distance) {
   // get position of the sun (azimuth and altitude) at today's sunrise
@@ -66,22 +84,62 @@ var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{
   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
+OWM_APPID = "448c266078b9dbbd59af7d77257e11be";
+var clouds = L.OWM.clouds({showLegend: false, opacity: 0.5, appId: OWM_APPID});
+var wind = L.OWM.wind({opacity: 0.5,appId: OWM_APPID});
+var rain = L.OWM.rain({opacity: 0.5,appId: OWM_APPID});
+var temp = L.OWM.temperature({opacity: 0.5,appId: OWM_APPID});
+  
+  
+var baseMaps = { "OSM Mapnik": OpenStreetMap_Mapnik };
+var overlayMaps = { "Clouds": clouds, "Wind":wind, "Rain":rain, "Temp":temp};
+var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
 
+
+/*
+var sidebar = L.control.sidebar({
+    autopan: false,       // whether to maintain the centered map point when opening the sidebar
+    closeButton: true,    // whether t add a close button to the panes
+    container: 'sidebar', // the DOM container or #ID of a predefined sidebar container that should be used
+    position: 'left',     // left or right
+}).addTo(map);
+*/
 
 function getPointsOnLine(map, aLine, steps){
   var aList = [];
   for (i=0; i<=10; i++){
     var P1 = GeometryUtil.interpolateOnLine(map, aLine, i*(1/steps));
     //console.log("P1", P1);
-    L.marker(P1.latLng).addTo(map);
+    //L.marker(P1.latLng).addTo(map);
     aList.push(P1);
   }
   return aList;
 }
 
+
+
+
+
+
 var aPoints =  getPointsOnLine(map, aLine, 10);
+/*
+coords = aPoints.map(function(point){
+  return [point.latLng.lat, point.latLng.lng];
+});
 
-
+		var geojson = {"name":"NewFeatureType","type":"FeatureCollection"
+,"features":[
+{"type":"Feature","geometry":{"type":"LineString","coordinates":coords},"properties":null}
+]}
+;
+		var el = L.control.elevation();
+		el.addTo(map);
+		var gjl = L.geoJson(geojson,{
+		    onEachFeature: el.addData.bind(el)
+		}).addTo(map);
+  */  
+    
+    
 function getHeights(){
   console.log("aPoints",aPoints);
   var aLatLngs = [];
