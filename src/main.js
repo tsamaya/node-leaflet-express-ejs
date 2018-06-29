@@ -1,31 +1,3 @@
-/*var L = require("leaflet");
-var SunCalc = require("suncalc");
-var LatLon = require("mt-latlon");
-var jQuery = require('jquery');
-var proxy = require('express-http-proxy');
-var morgan = require('morgan')
-var GeometryUtil = require("leaflet-geometryutil");
-
-require("leaflet-search"); //The place search
-
-require("leaflet-openweathermap");
-
-require("leaflet-tilelayer-colorpicker");
-require('leaflet-hotline')(L);
-
-require('leaflet-sidebar-v2');
-
-
-//require("font-awesome/css/font-awesome.css");
-//require("bootstrap/css/bootstrap.css");
-require("leaflet/dist/leaflet.css");
-//require("leaflet-search/dist/leaflet-search.css");
-require("leaflet-sidebar-v2/css/leaflet-sidebar.css");
-
-var PouchDB = require("pouchdb");
-PouchDB.plugin(require('pouchdb-authentication'));
-//https://github.com/pouchdb/add-cors-to-couchdb*/
-
 import L from "leaflet";
 import SunCalc from "suncalc";
 import LatLon from "mt-latlon";
@@ -38,6 +10,8 @@ import "leaflet-search"; //The place search
 import "leaflet-openweathermap";
 import "leaflet-tilelayer-colorpicker";
 import 'leaflet-sidebar-v2';
+
+// TODO : Move to full screen map?
 
 import "font-awesome/css/font-awesome.css";
 import "bootstrap/dist/css/bootstrap.css";
@@ -128,21 +102,23 @@ map.addControl( new L.Control.Search({
 		minLength: 2
   }) );
 
+// TODO : make target a singleton marker which can be moved / replaced on a search
 var target = [53.3797, -1.4744];
+
+// TODO : Drawsunset as well
 var times = SunCalc.getTimes(new Date(), target[0], target[1]);
-
 var sunrisePos = SunCalc.getPosition(times.sunrise, target[0], target[1]);
-
 // get sunrise azimuth in degrees
 var sunriseAngle = sunrisePos.azimuth * 180 / Math.PI;
-
 var aLine = getDirectionalLine(target, sunriseAngle, 10, "red");
 
 var polyline = L.polyline(aLine, {
   color: 'red'
 }).addTo(map);
 
+// TODO : put all this info in the sidebar
 console.log("times.sunrise", times.sunrise, "sunrisePos", sunrisePos, "sunriseAngle", sunriseAngle);
+
 
 function getHeightAtPoint(point, RGBLayer){
   var a = null;
@@ -199,7 +175,28 @@ function getPointsOnLine(map, aLine, steps){
   return aList;
 }
 
+// TODO : Draw graph or a heatline indicating where you should be able to see the target from
 var aPoints =  getPointsOnLine(map, aLine, 100);
+
+// TODO : Change day
+// TODO : save plans
+// TODO : scan along thesunset line etc. for it crossing a road where the veiw should be good 
+// TODO : Get google streetview of that point in the right direction
+
+// TODO : Login/ Register
+// TODO : Change height of view for drone photgraphy (a how high too fly for a view of ???)
+// TODO : Droneflight safety data
+// TODO : Flightplanning
+// TODO : Light condition timings (nautical twilight etc.)
+
+// TODO : Offline first flight/shootoinig plan data (and map flight safety data storage ??)
+// TODO : pouchdb and couchdb
+
+// TODO : Site reece recording
+
+// TODO : Will in work on phone / tablet
+// TODO : cordova if it will
+
 
 function getHeights(){
   console.log("aPoints",aPoints);
