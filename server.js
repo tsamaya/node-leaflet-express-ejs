@@ -10,14 +10,6 @@ var app = express();
 
 app.use(morgan('combined'))
 
-app.use('/elevation', proxy('api.open-elevation.com', {
-
-  changeOrigin: true,
-  https: true,
-  logLevel: "debug",
-  timeout: 2000
-}));
-
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
@@ -32,8 +24,9 @@ app.get('/about', function(req, res) {
   res.render('pages/about');
 });
 
-var browserify = require('browserify-middleware');
-app.use('/js', browserify(__dirname + '/src'));
+
+app.use(express.static('dist'))
+
 
 // Get port from environment and store in Express
 var port = process.env.PORT || 3000;

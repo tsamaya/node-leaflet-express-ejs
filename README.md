@@ -1,8 +1,6 @@
-# node-leaflet-express-ejs
+# Where to Shoot
 
-### Get started
-- run `npm install` to setup package dependencies.
-- then run `npm start`
+Landscape and drone photography planning tools
 
 ### Resources
 - [leaflet](http://leafletjs.com/)
@@ -18,8 +16,6 @@ Anyone and everyone is welcome to contribute.
 ### Issues
 Find a bug or want to request a new feature? Please let me know by submitting an issue.
 
-### Contact me
-twitter [@arferrand](http://twitter.com/arferrand)
 
 ### Licensing
 Licensed under the MIT License
